@@ -3,6 +3,7 @@ package exercises;
 public class SpaceComplexity {
 
   public static void main(String... args) {
+    // This is a linked relation between objects
     Object o = new Object();
     Holder holder = new Holder("Hello");
     holder.setNext(new Holder("World"));
@@ -12,6 +13,7 @@ public class SpaceComplexity {
     }
   }
 
+  // Each Holder holds an object and a link relation to the next Holder
   static class Holder {
     private Object o;
     private Holder next;
