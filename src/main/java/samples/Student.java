@@ -2,7 +2,7 @@ package samples;
 
 import java.util.*;
 
-class Student implements Comparable<Student> {
+public class Student implements Comparable<Student> {
   private final int year;
   private final String name;
   private final double average;
