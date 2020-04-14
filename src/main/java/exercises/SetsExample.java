@@ -2,9 +2,11 @@ package exercises;
 
 import java.util.HashSet;
 import java.util.Set;
+import java.util.concurrent.ConcurrentHashMap;
 
 public class SetsExample {
   public static void main(String[] args) {
+    ConcurrentHashMap.newKeySet();
     Set<Integer> oddBelowTen = new HashSet<>();
     oddBelowTen.add(1);
     oddBelowTen.add(3);
