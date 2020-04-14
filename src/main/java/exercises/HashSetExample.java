@@ -30,13 +30,16 @@ public class HashSetExample {
     int x = 1024;
     int y = 768;
 
-    System.out.println("(x * y) = " + (x * y));
+    System.out.println("(x * y) = " + (x * y)); // 786.432 different options
     Set<Integer> uniqueHashCodes = new HashSet<>();
     for (int i = 0; i < x; i++) {
       for (int j = 0; j < y; j++) {
         uniqueHashCodes.add(new Pixel(i, j).hashCode());
       }
     }
+    // We should have the same number (786.432)
+    // But instead we have a total of 32.481 registers inside of the HashSet.
+    // This is because of the hashCode() implementation in Pixel class.
     System.out.println("uniqueHashCodes = " + uniqueHashCodes.size());
   }
 }
