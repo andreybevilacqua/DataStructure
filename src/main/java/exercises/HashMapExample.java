@@ -1,9 +1,12 @@
-package samples;
+package exercises;
 
-import java.util.*;
-import java.util.concurrent.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
-public class HashMapExamples {
+public class HashMapExample {
+
   public static class Person {
     private final String name;
     private final int day;
@@ -35,15 +38,18 @@ public class HashMapExamples {
       return true;
     }
   }
-  public static void main(String... args) {
-    // 1.2 born - % remainder slow, but good distribution
-    // 1.4 & bitmask fast, but can be bad distribution
-    // 1.8 tree if too many clashes
-    //HashMap 3816
-    // ArrayList 5408 MapClashInspector Issue 235
 
+  public static void main(String... args) {
     HashMap<String, Integer> numbers = new HashMap<>(
-        Map.of("one", 1, "two", 2, "sixteen", 16, "unlucky", 13));
+        Map.of("one", 1, "two", 2, "sixteen", 16)
+    );
+    HashMap<String, Integer> numbers2 = new HashMap<>(
+        Map.ofEntries(
+            Map.entry("one", 1),
+            Map.entry("two", 2),
+            Map.entry("three", 3))
+    );
+
     HashMap<String, List<Integer>> superstition = new HashMap<>();
     add(superstition, "unlucky", 13);
     add(superstition, "unlucky", 7);
@@ -52,11 +58,12 @@ public class HashMapExamples {
     add(superstition, "lucky", 60);
     add(superstition, "lucky", 5);
 
-    superstition.forEach((k, v) -> System.out.println(k + "->" + v));
-
+    superstition.forEach((k,v) -> System.out.println(k + " -> " + v));
   }
 
   private static void add(HashMap<String, List<Integer>> superstition, String key, int number) {
-    superstition.computeIfAbsent(key, k -> new ArrayList<>()).add(number);
+    superstition
+        .computeIfAbsent(key, k -> new ArrayList<>())
+        .add(number);
   }
 }
