@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+// todo: to check clashes inside a HashMap, check for MapClashInspector.
 public class HashMapExample {
 
   public static class Person {
