@@ -3,6 +3,8 @@ package exercises;
 import java.util.Queue;
 import java.util.concurrent.ConcurrentLinkedDeque;
 import java.util.concurrent.ConcurrentLinkedQueue;
+import java.util.concurrent.atomic.LongAccumulator;
+import java.util.stream.IntStream;
 
 public class ConcurrentQueueExample {
   public static void main(String[] args) {
@@ -17,6 +19,18 @@ public class ConcurrentQueueExample {
     System.out.println("clq.poll() = " + clq.poll());
 
     System.out.println(clq.size()); // O(n)
+
+    LongAccumulator maxSize = new LongAccumulator(Long::max, 0);
+
+    IntStream
+        .range(0, 100_000_000)
+        .parallel()
+        .forEach(i -> {
+          clq.offer(i);
+          maxSize.accumulate(clq.size());
+          clq.poll();
+        });
+    System.out.println("maxSize = " + maxSize);
 
   }
 }
